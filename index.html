@@ -79,6 +79,14 @@
             flex-direction: column;
             justify-content: flex-start;
         }
+        
+        /* Three Column Layout for Slide 13 */
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            height: 100%;
+        }
 
         /* Image Right Text Left */
         .image-right-layout {
@@ -205,29 +213,30 @@
             background: #fff;
             border: 2px solid #1a3c34;
             border-radius: 16px;
-            padding: 30px;
+            padding: 25px;
             height: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
         .ai-feature-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             flex-shrink: 0; /* Header size fixed */
         }
         .ai-icon-pulse {
-            width: 40px; height: 40px;
+            width: 36px; height: 36px;
             background: #1a3c34;
             color: #fff;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            margin-right: 15px;
-            font-size: 20px;
+            margin-right: 12px;
+            font-size: 18px;
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
@@ -240,11 +249,11 @@
             flex: 1 1 0;
             background: #f8fafc;
             border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 12px;
+            margin-bottom: 12px;
             overflow-y: auto;
             border: 1px solid #e2e8f0;
-            font-size: 16px;
+            font-size: 15px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -253,21 +262,21 @@
         }
         .chat-input-area {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-shrink: 0; /* Input area fixed */
         }
         .chat-input {
             flex-grow: 1;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #cbd5e0;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
         }
         .chat-btn {
             background: #E07A5F;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
@@ -276,16 +285,15 @@
         .chat-btn:hover { background: #c05a41; }
         .chat-btn:disabled { background: #ccc; cursor: not-allowed; }
         
-        .message { padding: 10px 15px; border-radius: 12px; max-width: 85%; line-height: 1.5; word-wrap: break-word; }
+        .message { padding: 8px 12px; border-radius: 12px; max-width: 90%; line-height: 1.4; word-wrap: break-word; }
         .message.user { background: #1a3c34; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
         .message.ai { background: #fff; border: 1px solid #e2e8f0; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .typing-indicator { font-style: italic; color: #888; font-size: 14px; margin-top: 5px; display: none; margin-bottom: 10px;}
+        .typing-indicator { font-style: italic; color: #888; font-size: 13px; margin-top: 5px; display: none; margin-bottom: 10px;}
         
-        .sparkles { display: inline-block; animation: sparkle 1.5s infinite; }
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.1); }
-        }
+        /* Custom scrollbar for chat */
+        .chat-display::-webkit-scrollbar { width: 6px; }
+        .chat-display::-webkit-scrollbar-track { background: #f1f1f1; }
+        .chat-display::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
     </style>
 </head>
 <body>
@@ -568,22 +576,22 @@
     <div class="bg-pattern"></div>
     <h2 class="slide-title">✨ AI Powered Investment Tools <span style="font-size: 0.6em; color: #666; font-weight: normal;">(Gemini API Demo)</span></h2>
     <div class="content-area">
-        <div class="two-column tiled">
+        <div class="three-column">
             <!-- Feature 1: AI IR Manager -->
             <div class="ai-feature-box">
                 <div class="ai-feature-header">
                     <div class="ai-icon-pulse"><i class="fa-solid fa-robot"></i></div>
                     <div>
-                        <h3 style="margin:0; font-size: 22px;">AI IR 매니저</h3>
-                        <p style="margin:0; font-size: 14px; color: #666;">제안서 기반 실시간 질의응답</p>
+                        <h3 style="margin:0; font-size: 18px;">AI IR 매니저</h3>
+                        <p style="margin:0; font-size: 13px; color: #666;">제안서 기반 실시간 질의응답</p>
                     </div>
                 </div>
                 <div class="chat-display" id="ir-chat-display">
-                    <div class="message ai">안녕하세요! 취화담의 AI IR 담당자입니다. 저희 비즈니스 모델이나 기술에 대해 궁금한 점이 있으신가요?</div>
+                    <div class="message ai">안녕하세요! 취화담의 AI IR 담당자입니다. 궁금한 점이 있으신가요?</div>
                 </div>
-                <div class="typing-indicator" id="ir-typing">AI가 답변을 생성중입니다... ✨</div>
+                <div class="typing-indicator" id="ir-typing">답변을 생성중입니다... ✨</div>
                 <div class="chat-input-area">
-                    <input type="text" class="chat-input" id="ir-input" placeholder="예: 유통기한은 어떻게 되나요?" onkeypress="handleKeyPress(event, 'ir')">
+                    <input type="text" class="chat-input" id="ir-input" placeholder="예: 수익 모델은?" onkeypress="handleKeyPress(event, 'ir')">
                     <button class="chat-btn" onclick="sendMessage('ir')"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
@@ -593,17 +601,36 @@
                 <div class="ai-feature-header">
                     <div class="ai-icon-pulse" style="background: #E07A5F;"><i class="fa-solid fa-earth-americas"></i></div>
                     <div>
-                        <h3 style="margin:0; font-size: 22px; color: #E07A5F;">글로벌 진출 시뮬레이터</h3>
-                        <p style="margin:0; font-size: 14px; color: #666;">국가별 맞춤형 진출 전략 분석</p>
+                        <h3 style="margin:0; font-size: 18px; color: #E07A5F;">글로벌 시뮬레이터</h3>
+                        <p style="margin:0; font-size: 13px; color: #666;">국가별 맞춤형 진출 전략</p>
                     </div>
                 </div>
                 <div class="chat-display" id="global-chat-display">
-                    <div class="message ai">진출하고 싶은 국가명을 입력해주세요. 해당 국가의 문화와 취화담의 적합성을 분석해 드립니다.</div>
+                    <div class="message ai">진출하고 싶은 국가명을 입력해주세요. 전략을 분석해 드립니다.</div>
                 </div>
                 <div class="typing-indicator" id="global-typing">시장을 분석중입니다... ✨</div>
                 <div class="chat-input-area">
-                    <input type="text" class="chat-input" id="global-input" placeholder="예: 프랑스, 미국, 베트남" onkeypress="handleKeyPress(event, 'global')">
+                    <input type="text" class="chat-input" id="global-input" placeholder="예: 프랑스, 베트남" onkeypress="handleKeyPress(event, 'global')">
                     <button class="chat-btn" style="background: #1a3c34;" onclick="sendMessage('global')"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Feature 3: AI Mixologist -->
+            <div class="ai-feature-box">
+                <div class="ai-feature-header">
+                    <div class="ai-icon-pulse" style="background: #D4A373;"><i class="fa-solid fa-cocktail"></i></div>
+                    <div>
+                        <h3 style="margin:0; font-size: 18px; color: #D4A373;">AI 믹솔로지스트</h3>
+                        <p style="margin:0; font-size: 13px; color: #666;">취화담 칵테일 레시피 생성</p>
+                    </div>
+                </div>
+                <div class="chat-display" id="mixology-chat-display">
+                    <div class="message ai">좋아하는 과일이나 분위기를 알려주세요! (예: 딸기, 홈파티)</div>
+                </div>
+                <div class="typing-indicator" id="mixology-typing">레시피를 쉐이킹 중... 🍸</div>
+                <div class="chat-input-area">
+                    <input type="text" class="chat-input" id="mixology-input" placeholder="재료 또는 기분 입력" onkeypress="handleKeyPress(event, 'mixology')">
+                    <button class="chat-btn" style="background: #D4A373;" onclick="sendMessage('mixology')"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 </div>
             </div>
         </div>
@@ -635,10 +662,17 @@
             다음 회사 정보를 바탕으로 투자자의 질문에 대해 신뢰감 있고 설득력 있게 답변하세요. 
             답변은 한국어로 작성하고, 핵심을 명확히 전달하기 위해 3문장 이내로 요약하거나 글머리 기호를 사용하세요.
             정보: ${companyContext}`;
-        } else {
+        } else if (type === 'global') {
             systemInstruction = `당신은 글로벌 주류 시장 분석 전문가 AI입니다. 
             사용자가 입력한 국가에 대해 취화담(분말 막걸리, 건강 기능성, DIY 키트)의 진출 성공 전략을 3가지 포인트로 분석해주세요. 
             해당 국가의 술 문화와 웰니스 트렌드를 결합하여 긍정적인 전망을 제시하세요.`;
+        } else if (type === 'mixology') {
+            systemInstruction = `당신은 트렌디한 '주류 믹솔로지스트' AI입니다.
+            사용자가 입력한 재료나 분위기를 바탕으로 '취화담 분말 막걸리'를 베이스로 한 창작 칵테일 레시피를 만들어주세요.
+            1. 칵테일 이름 (창의적으로)
+            2. 준비물 (취화담 분말 필수)
+            3. 간단 레시피
+            이모지를 사용하여 즐겁고 활기찬 말투로 작성해주세요.`;
         }
 
         const data = {
@@ -666,9 +700,9 @@
     }
 
     async function sendMessage(type) {
-        const inputId = type === 'ir' ? 'ir-input' : 'global-input';
-        const displayId = type === 'ir' ? 'ir-chat-display' : 'global-chat-display';
-        const typingId = type === 'ir' ? 'ir-typing' : 'global-typing';
+        const inputId = type + '-input';
+        const displayId = type + '-chat-display';
+        const typingId = type + '-typing';
         
         const input = document.getElementById(inputId);
         const display = document.getElementById(displayId);
@@ -683,7 +717,7 @@
         userDiv.textContent = userText;
         display.appendChild(userDiv);
         
-        // Improved scrolling logic using requestAnimationFrame for better timing
+        // Improved scrolling logic
         requestAnimationFrame(() => {
             display.scrollTop = display.scrollHeight;
         });
