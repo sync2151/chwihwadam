@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>취화담 투자 제안서</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. CORE SETUP */
+        * { box-sizing: border-box; }
+        body {
+            background-color: #f0f2f5;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px 0;
+            place-items: center;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            background-color: #FDFBF7; /* Creamy White Background */
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 60px;
+            color: #2F4F4F; /* Deep Forest Green for Text */
+            margin-bottom: 20px;
+        }
+
+        /* 2. TYPOGRAPHY */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif; /* Elegant Serif for Headings */
+            color: #1a3c34; /* Darker Green */
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        /* Apply Noto Sans KR to headings if they contain Korean to ensure consistency */
+        h1, h2, h3 { font-family: 'Noto Sans KR', sans-serif; font-weight: 700; }
+
+        h1 { font-size: 64px; margin-bottom: 20px; }
+        h2.slide-title { font-size: 42px; margin-bottom: 40px; border-left: 5px solid #E07A5F; padding-left: 20px; }
+        h3 { font-size: 28px; margin-bottom: 15px; color: #E07A5F; /* Terracotta Accent */ }
+        p, li, td, th { font-size: 18px; line-height: 1.6; color: #4A5568; }
+        
+        /* 3. LAYOUT UTILITIES */
+        .content-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Two Column Tiled */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            height: 100%;
+        }
+        .two-column.tiled > div {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Image Right Text Left */
+        .image-right-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            height: 100%;
+        }
+        .image-wrapper {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensuring consistent aspect ratio */
+        }
+        /* Special case for product shot to show full kit */
+        .contain-image img { object-fit: contain; background: #fff; }
+
+        /* Highlighted Numbers */
+        .highlight-numbers {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            padding: 40px 0;
+        }
+        .highlight-item .number {
+            font-size: 80px;
+            font-weight: 700;
+            color: #E07A5F;
+            font-family: 'Playfair Display', serif; /* Use Serif for numbers for style */
+            display: block;
+            margin-bottom: 10px;
+        }
+        .highlight-item .label {
+            font-size: 22px;
+            font-weight: 500;
+            color: #2F4F4F;
+        }
+
+        /* Tiled Text Icons */
+        .tiled-icons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .icon-tile {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            border-top: 5px solid #1a3c34;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .icon-tile i {
+            font-size: 40px;
+            color: #1a3c34;
+            margin-bottom: 20px;
+        }
+
+        /* Bleed Image */
+        .slide-container.bleed-image-layout {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0;
+            padding: 0;
+            align-items: start;
+        }
+        .bleed-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        .bleed-image { width: 100%; height: 100%; max-height: 720px; object-fit: cover; }
+
+        /* Rounded Image & Text */
+        .rounded-layout {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            justify-content: center;
+        }
+        .rounded-img {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Chart Styles */
+        .chart-container { width: 100%; padding: 20px; background: #fff; border-radius: 16px; }
+        .bar-chart-row { display: flex; align-items: center; margin-bottom: 25px; }
+        .bar-label { width: 150px; text-align: right; margin-right: 20px; font-weight: bold; }
+        .bar-track { flex-grow: 1; background: #edf2f7; height: 40px; border-radius: 20px; overflow: hidden; }
+        .bar-fill { height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 15px; color: #fff; font-weight: bold; border-radius: 20px; }
+        
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { text-align: left; background: #1a3c34; color: #fff; padding: 15px; }
+        td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+
+        /* Timeline */
+        .timeline { position: relative; display: flex; justify-content: space-between; margin-top: 50px; }
+        .timeline::before { content: ''; position: absolute; top: 20px; left: 0; right: 0; height: 4px; background: #e2e8f0; z-index: 0; }
+        .timeline-item { position: relative; z-index: 1; text-align: center; width: 22%; }
+        .timeline-dot { width: 40px; height: 40px; background: #E07A5F; border-radius: 50%; margin: 0 auto 20px; border: 4px solid #fff; box-shadow: 0 0 0 4px #e2e8f0; }
+        
+        /* Decorative Backgrounds */
+        .bg-pattern {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(#E07A5F 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* AI Feature Styles */
+        .ai-feature-box {
+            background: #fff;
+            border: 2px solid #1a3c34;
+            border-radius: 16px;
+            padding: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-feature-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+            flex-shrink: 0; /* Header size fixed */
+        }
+        .ai-icon-pulse {
+            width: 40px; height: 40px;
+            background: #1a3c34;
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(26, 60, 52, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(26, 60, 52, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(26, 60, 52, 0); }
+        }
+        .chat-display {
+            /* FIXED: Use flex: 1 1 0 to properly handle scrolling areas in flex containers */
+            flex: 1 1 0;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            /* Ensure smooth scrolling doesn't conflict with instant updates */
+            scroll-behavior: auto; 
+        }
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0; /* Input area fixed */
+        }
+        .chat-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .chat-btn {
+            background: #E07A5F;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .chat-btn:hover { background: #c05a41; }
+        .chat-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .message { padding: 10px 15px; border-radius: 12px; max-width: 85%; line-height: 1.5; word-wrap: break-word; }
+        .message.user { background: #1a3c34; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .message.ai { background: #fff; border: 1px solid #e2e8f0; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .typing-indicator { font-style: italic; color: #888; font-size: 14px; margin-top: 5px; display: none; margin-bottom: 10px;}
+        
+        .sparkles { display: inline-block; animation: sparkle 1.5s infinite; }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title Slide -->
+<div class="slide-container" id="slide1">
+    <div class="bg-pattern"></div>
+    <div class="content-area" style="text-align: center; align-items: center;">
+        <h3 style="letter-spacing: 3px; font-size: 20px; color: #E07A5F; text-transform: uppercase;">Angel Investment Proposal</h3>
+        <h1 style="font-size: 72px; margin: 20px 0;">CHWIHWADAM<br><span style="font-size: 48px;">(취화담)</span></h1>
+        <p style="font-size: 32px; font-family: 'Playfair Display', serif; color: #2F4F4F; font-style: italic;">K-술의 미래: 첨단 바이오 기술과 전통의 만남</p>
+        <hr style="width: 100px; border: 2px solid #1a3c34; margin: 40px auto;">
+        <p style="font-size: 18px;">선구적인 엔젤 투자자분들을 위한 제안서</p>
+    </div>
+</div>
+
+<!-- Slide 2: The Problem & Opportunity -->
+<div class="slide-container" id="slide2">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">막걸리의 역설 (The Makgeolli Paradox)</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3><i class="fa-solid fa-triangle-exclamation"></i> 시장의 문제점 (Pain Points)</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 20px;"><strong>짧은 유통기한:</strong> 전통 생막걸리는 쉽게 변질되어 수출 및 장기 보관이 불가능합니다.</li>
+                    <li style="margin-bottom: 20px;"><strong>화학 첨가물 의존:</strong> 대량 생산 제품은 발효 제어를 위해 아스파탐(WHO 발암 가능 물질) 등 화학 물질을 사용합니다.</li>
+                    <li><strong>물류의 악몽:</strong> 무거운 액체 무게와 콜드체인 필수로 인한 높은 물류 비용이 발생합니다.</li>
+                </ul>
+            </div>
+            <div style="background-color: #1a3c34; color: #fff;">
+                <h3 style="color: #deff9a;"><i class="fa-solid fa-lightbulb"></i> 우리의 기회 (The Opportunity)</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 20px; color: #e2e8f0;"><strong>글로벌 K-Food 붐:</strong> 전 세계적으로 한국 문화와 음식에 대한 폭발적인 수요 증가.</li>
+                    <li style="margin-bottom: 20px; color: #e2e8f0;"><strong>클린 라벨 트렌드:</strong> "무화학 첨가물" 및 "기능성" 식품을 원하는 소비자 니즈.</li>
+                    <li style="color: #e2e8f0;"><strong>DIY & 믹솔로지:</strong> MZ 세대는 직접 만들고 즐기는 독특한 경험을 선호합니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: The Solution (Product) -->
+<div class="slide-container" id="slide3">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">솔루션: 분말화 혁신</h2>
+    <div class="content-area">
+        <div class="image-right-layout">
+            <div>
+                <h3>전통을 혁신하다</h3>
+                <p>취화담은 <strong>세계 최초의 5분 즉석 분말 막걸리 키트</strong>를 개발했습니다.</p>
+                <ul style="margin-top: 30px;">
+                    <li><strong>화학 첨가물 제로:</strong> 순수 발아현미 + 김치 유산균 + 백년초.</li>
+                    <li><strong>물류 혁신:</strong> 분말 형태로 무게 90% 감소, 상온 보관 가능 (콜드체인 불필요).</li>
+                    <li><strong>새로운 음주 문화:</strong> 소비자가 직접 물만 부어 빚어 마시는 프리미엄 DIY 경험.</li>
+                </ul>
+            </div>
+            <div class="image-wrapper contain-image">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/2618090427945890917" alt="취화담 분말 막걸리 키트">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Market Validation -->
+<div class="slide-container" id="slide4">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">폭발적인 시장 잠재력</h2>
+    <div class="content-area">
+        <div class="highlight-numbers">
+            <div class="highlight-item">
+                <span class="number">16K</span>
+                <span class="label">톤(Ton) 수출 (2025 예상)<br>증가하는 글로벌 수요</span>
+            </div>
+            <div class="highlight-item">
+                <span class="number">7.6%</span>
+                <span class="label">연평균 성장률(CAGR)<br>프리미엄 탁주 시장</span>
+            </div>
+            <div class="highlight-item">
+                <span class="number">100%</span>
+                <span class="label">클린 라벨(Clean Label)<br>웰니스 시장 타겟</span>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; font-style: italic;">
+            "기능성 식품(유산균)과 크래프트 주류의 교차점은 아직 개척되지 않은 블루오션입니다."
+        </p>
+    </div>
+</div>
+
+<!-- Slide 5: Core Technology -->
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">바이오 발효 과학 기술</h2>
+    <div class="content-area">
+        <div class="rounded-layout">
+            <img class="rounded-img" src="http://googleusercontent.com/image_collection/image_retrieval/3509890224029802777" alt="현미경으로 본 유산균">
+            <div style="flex: 1;">
+                <h3>특허받은 "숨 쉬는" 기술</h3>
+                <p>우리의 핵심 경쟁력은 '살아있는 생명력'을 보존하는 기술에 있습니다.</p>
+                <ul style="margin-top: 20px;">
+                    <li style="margin-bottom: 15px;"><strong>김치 유산균:</strong> 면역력 증강과 장 건강에 탁월한 고효능 유산균.</li>
+                    <li style="margin-bottom: 15px;"><strong>발아현미 (GABA):</strong> 일반 쌀 대비 영양소가 증폭된 천연 영양제.</li>
+                    <li><strong>숨 쉬는 밸브 포장:</strong> 외부 공기는 차단하고 발효 가스만 배출하여, 집에서 "24시간 발효"를 가능케 하는 핵심 기술.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Product Lineup -->
+<div class="slide-container" id="slide6">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">확장 가능한 제품 포트폴리오</h2>
+    <div class="content-area">
+        <div class="tiled-icons">
+            <div class="icon-tile">
+                <i class="fa-solid fa-flask"></i>
+                <h3>시그니처 분말 키트</h3>
+                <p>가정용 홈브루잉 키트. 5분 준비, 24시간 발효. 프리미엄 선물 시장 타겟.</p>
+            </div>
+            <div class="icon-tile">
+                <i class="fa-solid fa-wine-bottle"></i>
+                <h3>장쾌유 (腸快油)</h3>
+                <p>무알콜 디톡 효소 음료. 변비 및 다이어트 기능성 건강 음료 시장 타겟.</p>
+            </div>
+            <div class="icon-tile">
+                <i class="fa-solid fa-cookie-bite"></i>
+                <h3>막걸리 젤리</h3>
+                <p>씹어먹는 젤리형 막걸리. 젋은 층을 위한 펀(Fun)하고 트렌디한 간식.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Competitive Advantage -->
+<div class="slide-container bleed-image-layout" id="slide7">
+    <div class="bleed-content">
+        <h2 style="font-size: 42px; margin-bottom: 30px; font-family: 'Playfair Display', serif;">경쟁 우위:<br>원재료가 답이다</h2>
+        <p style="margin-bottom: 20px;"><strong>경쟁사:</strong> 원가 절감을 위해 묵은 쌀, 밀가루를 사용하며, 발효 억제를 위해 아스파탐 등 인공 감미료 첨가.</p>
+        <p style="margin-bottom: 20px; color: #1a3c34; font-weight: bold;"><strong>취화담:</strong> 100% 국산 발아현미 & 제주산 백년초 사용.</p>
+        <p>풍부한 GABA 성분과 살아있는 효소로 "숙취 없는" 경험을 제공합니다. 이것은 단순한 술이 아닌, 슈퍼푸드입니다.</p>
+    </div>
+    <div>
+        <img class="bleed-image" src="http://googleusercontent.com/image_collection/image_retrieval/10008172888814441182" alt="발아현미 확대 사진">
+    </div>
+</div>
+
+<!-- Slide 8: Export Strategy -->
+<div class="slide-container" id="slide8">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">글로벌 물류 및 수출 전략</h2>
+    <div class="content-area">
+        <div class="image-right-layout">
+            <div class="image-wrapper">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/13291381117704648571" alt="세계 지도 위 수출 경로">
+            </div>
+            <div>
+                <h3>글로벌 시장의 문을 열다</h3>
+                <p>분말화 기술로 K-술 수출의 최대 장벽인 <strong>무게와 변질 문제</strong>를 완벽히 해결했습니다.</p>
+                <div class="chart-container" style="margin-top: 30px; background: transparent; padding: 0;">
+                    <div class="bar-chart-row">
+                        <div class="bar-label">일반 병 막걸리</div>
+                        <div class="bar-track"><div class="bar-fill" style="width: 100%; background: #bdc3c7; color: #333;">높은 물류 비용</div></div>
+                    </div>
+                    <div class="bar-chart-row">
+                        <div class="bar-label" style="color: #E07A5F;">취화담</div>
+                        <div class="bar-track"><div class="bar-fill" style="width: 20%; background: #E07A5F;">-80% 비용 절감</div></div>
+                    </div>
+                </div>
+                <p style="font-size: 16px; margin-top: 10px;">* DTC(Direct-to-Consumer) 해외 직구 배송이 가능해집니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Target Audience -->
+<div class="slide-container" id="slide9">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">MZ 세대를 사로잡다</h2>
+    <div class="content-area">
+        <div class="rounded-layout" style="flex-direction: row-reverse;">
+            <img class="rounded-img" src="http://googleusercontent.com/image_collection/image_retrieval/6096853414983852132" alt="파티를 즐기는 젊은이들">
+            <div style="flex: 1;">
+                <h3>"믹솔로지(Mixology)" 트렌드</h3>
+                <p>젊은 소비자(MZ세대)는 취하기 위한 음주가 아닌 다음을 추구합니다:</p>
+                <ul style="margin-top: 20px;">
+                    <li style="margin-bottom: 10px;"><strong>경험(Experience):</strong> 직접 술을 빚는 과정 자체가 즐거운 놀이이자 인증샷 콘텐츠입니다.</li>
+                    <li style="margin-bottom: 10px;"><strong>건강(Health):</strong> 저도수, 글루텐 프리, 유산균 섭취를 선호합니다.</li>
+                    <li><strong>커스터마이징:</strong> 물 대신 탄산수나 과일 음료를 섞어 나만의 술을 만듭니다.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Financial Impact -->
+<div class="slide-container" id="slide10">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">고수익 비즈니스 모델</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div style="justify-content: center;">
+                <h3>수익 창출 동인</h3>
+                <p style="margin-bottom: 15px;"><strong>1. 생산 효율성:</strong> 건조 분말 제조 공정은 액상 양조 대비 폐기율이 낮습니다.</p>
+                <p style="margin-bottom: 15px;"><strong>2. 재고 관리 최적화:</strong> 12개월 이상의 긴 유통기한 (생막걸리는 30일 불과).</p>
+                <p><strong>3. 프리미엄 가격 정책:</strong> 단순 주류가 아닌 "건강 키트"로 포지셔닝하여 높은 마진 확보.</p>
+            </div>
+            <div style="background: transparent; border: none; box-shadow: none;">
+                <!-- Simulated Area Chart using CSS shapes/gradients -->
+                <div style="width: 100%; height: 300px; position: relative; border-left: 2px solid #333; border-bottom: 2px solid #333; display: flex; align-items: flex-end;">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(to top right, rgba(224, 122, 95, 0.2), rgba(26, 60, 52, 0.1)); position: absolute; clip-path: polygon(0 80%, 33% 60%, 66% 30%, 100% 10%, 100% 100%, 0 100%);"></div>
+                    <svg width="100%" height="100%" style="position: absolute;">
+                        <polyline points="0,240 160,180 320,90 480,30" style="fill:none;stroke:#1a3c34;stroke-width:4" />
+                        <circle cx="0" cy="240" r="6" fill="#E07A5F" />
+                        <circle cx="160" cy="180" r="6" fill="#E07A5F" />
+                        <circle cx="320" cy="90" r="6" fill="#E07A5F" />
+                        <circle cx="480" cy="30" r="6" fill="#E07A5F" />
+                    </svg>
+                    <div style="position: absolute; bottom: -30px; left: 0;">2023</div>
+                    <div style="position: absolute; bottom: -30px; left: 33%;">2024</div>
+                    <div style="position: absolute; bottom: -30px; left: 66%;">2025</div>
+                    <div style="position: absolute; bottom: -30px; right: 0;">2026</div>
+                </div>
+                <p style="text-align: center; margin-top: 40px; font-weight: bold;">예상 매출 성장 추이</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: Roadmap -->
+<div class="slide-container" id="slide11">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">성장 로드맵 (Roadmap)</h2>
+    <div class="content-area">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3>2023</h3>
+                <p>법인 설립<br>특허 등록 완료<br>초기 제품 출시</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3>2024</h3>
+                <p>국내 B2B 확장<br>전통주점 파트너십<br>온라인 플랫폼 입점</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3>2025</h3>
+                <p style="font-weight: bold; color: #1a3c34;">글로벌 수출 (미국/유럽)<br>FDA 승인 추진<br>신규 맛 출시</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot" style="background: #1a3c34;"></div>
+                <h3>2026</h3>
+                <p>글로벌 K-Liquor 리더<br>기능성 식품 인증<br>IPO 준비</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 12: Ask & Vision -->
+<div class="slide-container" id="slide12">
+    <div class="bg-pattern"></div>
+    <div class="content-area" style="text-align: center;">
+        <h2 style="font-size: 56px; margin-bottom: 30px;">혁신에 동참하세요</h2>
+        <p style="font-size: 24px; max-width: 800px; margin: 0 auto 50px;">
+            글로벌 확장을 가속화할 전략적 파트너를 찾고 있습니다.<br>
+            K-컬쳐, 바이오 기술, 그리고 웰니스의 융합에 투자하십시오.
+        </p>
+        
+        <div style="background: #fff; display: inline-block; padding: 40px 80px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 20px; color: #2F4F4F;">Contact Us</h3>
+            <p style="font-size: 20px; margin-bottom: 10px;"><i class="fa-solid fa-phone"></i> 1688-9954</p>
+            <p style="font-size: 20px; margin-bottom: 10px;"><i class="fa-solid fa-location-dot"></i> 강원특별자치도 동해시 새들길 1-2</p>
+            <p style="font-size: 20px; color: #E07A5F; font-weight: bold;">취화담(주)</p>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 13: AI Features Demo -->
+<div class="slide-container" id="slide13">
+    <div class="bg-pattern"></div>
+    <h2 class="slide-title">✨ AI Powered Investment Tools <span style="font-size: 0.6em; color: #666; font-weight: normal;">(Gemini API Demo)</span></h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <!-- Feature 1: AI IR Manager -->
+            <div class="ai-feature-box">
+                <div class="ai-feature-header">
+                    <div class="ai-icon-pulse"><i class="fa-solid fa-robot"></i></div>
+                    <div>
+                        <h3 style="margin:0; font-size: 22px;">AI IR 매니저</h3>
+                        <p style="margin:0; font-size: 14px; color: #666;">제안서 기반 실시간 질의응답</p>
+                    </div>
+                </div>
+                <div class="chat-display" id="ir-chat-display">
+                    <div class="message ai">안녕하세요! 취화담의 AI IR 담당자입니다. 저희 비즈니스 모델이나 기술에 대해 궁금한 점이 있으신가요?</div>
+                </div>
+                <div class="typing-indicator" id="ir-typing">AI가 답변을 생성중입니다... ✨</div>
+                <div class="chat-input-area">
+                    <input type="text" class="chat-input" id="ir-input" placeholder="예: 유통기한은 어떻게 되나요?" onkeypress="handleKeyPress(event, 'ir')">
+                    <button class="chat-btn" onclick="sendMessage('ir')"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Feature 2: Global Market Simulator -->
+            <div class="ai-feature-box">
+                <div class="ai-feature-header">
+                    <div class="ai-icon-pulse" style="background: #E07A5F;"><i class="fa-solid fa-earth-americas"></i></div>
+                    <div>
+                        <h3 style="margin:0; font-size: 22px; color: #E07A5F;">글로벌 진출 시뮬레이터</h3>
+                        <p style="margin:0; font-size: 14px; color: #666;">국가별 맞춤형 진출 전략 분석</p>
+                    </div>
+                </div>
+                <div class="chat-display" id="global-chat-display">
+                    <div class="message ai">진출하고 싶은 국가명을 입력해주세요. 해당 국가의 문화와 취화담의 적합성을 분석해 드립니다.</div>
+                </div>
+                <div class="typing-indicator" id="global-typing">시장을 분석중입니다... ✨</div>
+                <div class="chat-input-area">
+                    <input type="text" class="chat-input" id="global-input" placeholder="예: 프랑스, 미국, 베트남" onkeypress="handleKeyPress(event, 'global')">
+                    <button class="chat-btn" style="background: #1a3c34;" onclick="sendMessage('global')"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Context from the presentation content to feed the AI
+    const companyContext = `
+    회사명: 취화담(주).
+    핵심 제품: 김치유산균 발아현미 분말 막걸리 키트.
+    핵심 문제 해결: 막걸리의 짧은 유통기한(30일)과 무거운 물류비용, 인공감미료(아스파탐) 사용 문제를 해결.
+    솔루션: 분말화 기술로 무게 90% 감소, 유통기한 12개월 이상 확보, 화학 첨가물 제로(100% 천연).
+    기술: 특허받은 '숨 쉬는 밸브' 포장 기술로 집에서 24시간 발효 가능.
+    원재료: 100% 국산 발아현미, 제주산 백년초, 김치 유산균.
+    시장성: 2025년 수출 16,000톤 예상, 프리미엄 탁주 시장 연평균 7.6% 성장.
+    수익성: 폐기율 감소 및 긴 유통기한으로 높은 마진.
+    로드맵: 2023 법인설립 -> 2024 국내 B2B/온라인 -> 2025 글로벌 수출(미국/유럽) -> 2026 IPO 준비.
+    `;
+
+    const apiKey = ""; // Gemini API Key injected by environment
+
+    async function callGeminiAPI(prompt, type) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        
+        let systemInstruction = "";
+        if (type === 'ir') {
+            systemInstruction = `당신은 취화담(주)의 전문 IR 담당자 AI입니다. 
+            다음 회사 정보를 바탕으로 투자자의 질문에 대해 신뢰감 있고 설득력 있게 답변하세요. 
+            답변은 한국어로 작성하고, 핵심을 명확히 전달하기 위해 3문장 이내로 요약하거나 글머리 기호를 사용하세요.
+            정보: ${companyContext}`;
+        } else {
+            systemInstruction = `당신은 글로벌 주류 시장 분석 전문가 AI입니다. 
+            사용자가 입력한 국가에 대해 취화담(분말 막걸리, 건강 기능성, DIY 키트)의 진출 성공 전략을 3가지 포인트로 분석해주세요. 
+            해당 국가의 술 문화와 웰니스 트렌드를 결합하여 긍정적인 전망을 제시하세요.`;
+        }
+
+        const data = {
+            contents: [{
+                parts: [{ text: prompt }]
+            }],
+            systemInstruction: {
+                parts: [{ text: systemInstruction }]
+            }
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            return result.candidates[0].content.parts[0].text;
+        } catch (error) {
+            console.error("API Error:", error);
+            return "죄송합니다. 현재 AI 연결 상태가 좋지 않아 답변을 가져올 수 없습니다.";
+        }
+    }
+
+    async function sendMessage(type) {
+        const inputId = type === 'ir' ? 'ir-input' : 'global-input';
+        const displayId = type === 'ir' ? 'ir-chat-display' : 'global-chat-display';
+        const typingId = type === 'ir' ? 'ir-typing' : 'global-typing';
+        
+        const input = document.getElementById(inputId);
+        const display = document.getElementById(displayId);
+        const typing = document.getElementById(typingId);
+        const userText = input.value.trim();
+
+        if (!userText) return;
+
+        // Add User Message
+        const userDiv = document.createElement('div');
+        userDiv.className = 'message user';
+        userDiv.textContent = userText;
+        display.appendChild(userDiv);
+        
+        // Improved scrolling logic using requestAnimationFrame for better timing
+        requestAnimationFrame(() => {
+            display.scrollTop = display.scrollHeight;
+        });
+
+        input.value = '';
+        input.disabled = true;
+        typing.style.display = 'block';
+
+        // Call AI
+        const aiResponse = await callGeminiAPI(userText, type);
+
+        // Remove Typing Indicator
+        typing.style.display = 'none';
+        input.disabled = false;
+        input.focus();
+
+        // Add AI Message
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'message ai';
+        aiDiv.innerHTML = aiResponse.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Simple Markdown bold support
+        display.appendChild(aiDiv);
+        
+        // Scroll to bottom after layout update
+        requestAnimationFrame(() => {
+            display.scrollTop = display.scrollHeight;
+        });
+    }
+
+    function handleKeyPress(event, type) {
+        if (event.key === 'Enter') {
+            sendMessage(type);
+        }
+    }
+</script>
+
+</body>
+</html>
