@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문하기 - 취화담</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo"><i class="fa-solid fa-wine-bottle"></i> 취화담</a>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="products.html">상품소개</a>
+                <a href="about.html">회사소개</a>
+                <a href="order.html" class="btn-primary">주문하기</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Order Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">제품 주문하기</h2>
+            
+            <div class="order-form-container">
+                <form id="orderForm">
+                    <!-- Personal Info -->
+                    <div class="form-group">
+                        <label for="name">주문자 성함/상호</label>
+                        <input type="text" id="name" class="form-control" placeholder="홍길동" required>
+                    </div>
+
+                    <!-- Product Selection -->
+                    <div class="form-group">
+                        <label for="product">상품 선택</label>
+                        <select id="product" class="form-control" required>
+                            <option value="">상품을 선택해주세요</option>
+                            <option value="막걸리 키트">김치유산균 발아현미 분말막걸리 키트</option>
+                            <option value="장쾌유">장쾌유 (효모 효소 음료)</option>
+                            <option value="막걸리 젤리">젤리형 씹어먹는 막걸리</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">주문 수량</label>
+                        <input type="number" id="quantity" class="form-control" min="1" value="1" required>
+                    </div>
+
+                    <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+                    <!-- Mobile Verification / Random Password Generator -->
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a3c34;">휴대폰 인증 (비밀번호 생성)</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                        주문 확인 및 배송 조회를 위해 휴대폰 번호로 <strong>6자리 일회용 비밀번호</strong>를 발송합니다.
+                    </p>
+
+                    <div class="form-group">
+                        <label for="phone">휴대폰 번호</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="tel" id="phone" class="form-control" placeholder="010-0000-0000" required>
+                            <button type="button" id="generateBtn" class="btn-primary" style="white-space: nowrap;">인증번호 받기</button>
+                        </div>
+                    </div>
+
+                    <!-- Simulation Display Area -->
+                    <div class="auth-box">
+                        <p>인증번호 확인 (시뮬레이션)</p>
+                        <div id="codeDisplay" class="auth-display">--- ---</div>
+                        <p id="codeStatus" style="font-size: 0.9rem; color: #E07A5F; margin-top: 10px;"></p>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 30px; padding: 15px; font-size: 1.1rem;">주문 완료하기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Chwihwadam. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
